@@ -30,7 +30,7 @@ public class PhoneNumberList {
                     if(j==i)continue;
                     if(phone_book[i].length()< phone_book[j].length()){
                         if(phone_book[j].indexOf(phone_book[i]) ==0){
-                            System.out.println(phone_book[i]+" : "+phone_book[j]+" = "+phone_book[j].indexOf(phone_book[i]));
+                            //System.out.println(phone_book[i]+" : "+phone_book[j]+" = "+phone_book[j].indexOf(phone_book[i]));
                             answer = false;
                             break;
                         }
