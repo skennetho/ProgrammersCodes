@@ -25,7 +25,7 @@ import java.util.Comparator;
 public class LargestNumber {
     public static void main(String[] args) {
 //        int[] p ={6,10,2};
-        int[] p = {3, 30, 34, 5, 9};
+        int[] p = {10, 101};
 //        int[] p = {90, 91,92,93,94,95,96,97,98,99};
 
         Solution sl = new Solution();
@@ -95,6 +95,10 @@ public class LargestNumber {
                 System.out.print(Arrays.toString(arr));
             }
             System.out.println();
+
+            if(list.get(0)[0] ==0){
+                return "0";
+            }
             for(int[] arr :list){
                 for(int n  :arr){
                     answer+=n;
@@ -108,7 +112,7 @@ public class LargestNumber {
         public int[] intToArray(int n) {
             int j = 0;
             int  len = (int) Math.log10((double) n) + 1;
-
+            if(n==0)len =1;
             int[] arr = new int[len];
             while (n != 0) {
                 arr[len - j - 1] = n % 10;
@@ -123,6 +127,9 @@ public class LargestNumber {
             int[] shortNum = (num1.length < num2.length) ? num1 : num2;
             int[] longNum = (num1.length > num2.length) ? num1 : num2;
 
+            //이렇게 하면 엄청 틀림 그리고 어디가 원인인지 알기가 어려움(너무많은 조건때문에
+            //str형식으로 num1+num2 와 num2+num1중 무엇이 더큰지를 통해 비교하게 해야함
+            //아래는 수정전
             for (int i = 0; i < shortNum.length; i++) {
                 if (num1[i] > num2[i]) {
                     return true;
