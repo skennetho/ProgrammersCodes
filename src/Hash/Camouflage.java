@@ -46,6 +46,7 @@ public class Camouflage {
         int kind = 0;
         for(int i =0 ; i<30; i++){
             if(i%3==0)kind++;
+
             test[i][0] = kind+"";
             test[i][1] = i+"";
         }
@@ -68,29 +69,29 @@ public class Camouflage {
 
     }
 
-    static ArrayList<Integer> list = new ArrayList<>();
-    public static int count =0;
-    public static void counter(int[] arr,  int r, int n){
-        if (n==0) {
-            int x =1;
-            for(int i : list){
-                x*= i;
-            }
-            count+=x;
-            System.out.println("count : "+count+"       ||  "+list.toString());
-            return;
-        }else{
-            for (int i = r; i < arr.length; i++) {
-                list.add(arr[i]);
-                counter(arr, i + 1, n - 1);
-                list.remove(list.indexOf(arr[i]));
-
-                if(!(arr.length -i>n)){     //무의미한 재귀를 막기위한 부분 예(3개남았는데3개뽑으려할때는 한번돌면 끝나기때문)
-                    break;
-                }
-            }
-        }
-    }
+//    static ArrayList<Integer> list = new ArrayList<>();
+//    public static int count =0;
+//    public static void counter(int[] arr,  int r, int n){
+//        if (n==0) {
+//            int x =1;
+//            for(int i : list){
+//                x*= i;
+//            }
+//            count+=x;
+//            System.out.println("count : "+count+"       ||  "+list.toString());
+//            return;
+//        }else{
+//            for (int i = r; i < arr.length; i++) {
+//                list.add(arr[i]);
+//                counter(arr, i + 1, n - 1);
+//                list.remove(list.indexOf(arr[i]));
+//
+//                if(!(arr.length -i>n)){     //무의미한 재귀를 막기위한 부분 예(3개남았는데3개뽑으려할때는 한번돌면 끝나기때문)
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
     static class Solution {
         int count;
