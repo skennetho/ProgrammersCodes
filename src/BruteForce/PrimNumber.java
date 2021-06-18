@@ -1,8 +1,7 @@
 package BruteForce;
 
-import java.util.Arrays;
-import java.util.TreeSet;
 
+import java.util.*;
 
 /**
  * 문제 설명
