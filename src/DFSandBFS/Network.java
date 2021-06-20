@@ -30,49 +30,50 @@ import java.util.*;
 public class Network {
     int n;
     int[][] computers;
-    public static void main(String[] args){
-        //test
-        Network case1 = new Network( 3,new int[][]{{1,1,0},{1,1,0},{0,0,1}});
-        testSolution(case1);
-    }
-    public static void testSolution(Network param){
-        System.out.println("n= "+param.n);
-        for(int[] arr: param.computers){
+
+    public  void testSolution(){
+        System.out.println("n= "+n);
+        for(int[] arr: computers){
             System.out.println(Arrays.toString(arr));
         }
-        System.out.println("::result: "+solution(param.n, param.computers));
+        System.out.println("::result: "+solution(n, computers));
         System.out.println("-------------------");
     }
 
-    public static int solution(int n, int[][] computers) {
+    public int solution(int n, int[][] computers) {
         ArrayList<ArrayList<Integer>> bfs = new ArrayList<>();
         int[] visited = new int[n];
 
         for(int i =0 ; i< n ;i++){                                      //상삼각의 1찾기
+            if(visited[i] != 1){
+                visited[i]=1;
+                ArrayList<Integer> arr1 = new ArrayList<Integer>();
+                arr1.add(i);
+                bfs.add(arr1);
+            }
             for (int j=i+1 ; j<n; j++){
-                if(computers[i][j] ==1){                                //찾았다면
-                    if(visited[i] != 1){
-                        visited[i]=1;
-                        ArrayList<Integer> arr1 = new ArrayList<Integer>();
-                        arr1.add(i);
-                        bfs.add(arr1);
-                    }
-                    if(visited[j] != 1){
-                        visited[j]=1;
-                        ArrayList<Integer> arr2 = new ArrayList<Integer>();
-                        arr2.add(j);
-                        bfs.add(arr2);
-                    }
+
+                if(visited[j] != 1){
+                    visited[j]=1;
+                    ArrayList<Integer> arr2 = new ArrayList<Integer>();
+                    arr2.add(j);
+                    bfs.add(arr2);
+                }
+//
+                if(computers[i][j] ==1 || computers[j][i] ==1){                                //찾았다면
+
                     int index_i = findIndexOfArrayWithNum(bfs, i);
                     int index_j = findIndexOfArrayWithNum(bfs, j);
                     connectArrayList(bfs, index_i, index_j);
+
                 }
+                System.out.println("test:"+bfs.size());
             }
         }
         return bfs.size();
     }
 
-    public static int findIndexOfArrayWithNum(ArrayList<ArrayList<Integer>> list, int number){     //visited[number] ==1 이어야 가능.
+    public int findIndexOfArrayWithNum(ArrayList<ArrayList<Integer>> list, int number){     //visited[number] ==1 이어야 가능.
 
         for(int i=0 ; i< list.size(); i++){
             if(list.get(i).contains(number)) return i;
@@ -80,7 +81,8 @@ public class Network {
         return -1;
     }
 
-    public static void connectArrayList(ArrayList<ArrayList<Integer>> list, int index1, int index2){
+    public void connectArrayList(ArrayList<ArrayList<Integer>> list, int index1, int index2){
+        if(index1 == index2) return;
         if(index1<0 || index2<0){
             System.out.println("::error!");
             return;

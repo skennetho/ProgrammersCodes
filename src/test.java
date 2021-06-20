@@ -1,7 +1,9 @@
 import BruteForce.Carpet;
+import DFSandBFS.Network;
 import Greedy.ConnectIslands;
 import Greedy.Joystick;
 import Greedy.MakingBigNumber;
+import Greedy.SpeedTrap;
 import Heap.DiscController;
 import Heap.DoublePriorityQueue;
 import Sort.H_index;
@@ -12,7 +14,35 @@ import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        test_ConnectIslnads();
+        test_SpeedTrap();
+    }
+
+    public static void test_SpeedTrap() {
+
+        SpeedTrap speedTrap = new SpeedTrap(new int[][]{{-20, 15}, {-20, -10}, {-20, -17}, {-20, 3}}, 1);
+        speedTrap.test();
+
+        SpeedTrap case2 = new SpeedTrap(new int[][]{{-20, 15}, {-14, -5}, {-18, -13}, {-5, -3}}, 2);
+        case2.test();
+
+        SpeedTrap case3 = new SpeedTrap(new int[][]{{0, 0}, {0, 0}, {2, 2}}, 2);
+        case3.test();
+
+        SpeedTrap case4 = new SpeedTrap(new int[][]{{0, 1}, {0, 1}, {2, 2}}, 2);
+        case4.test();
+
+        speedTrap = new SpeedTrap(new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {7, 8}, {8, 9}, {9, 10}, {10, 11}, {11, 12}, {12, 13}, {13, 14}, {14, 15}}, 8);
+        speedTrap.test();
+
+        speedTrap = new SpeedTrap(new int[][]{{-191, -107}, {-184, -151}, {-150, -102}, {-171, -124}, {-120, -114}}, 2);
+        speedTrap.test();
+
+
+    }
+
+    public static void test_Network() {
+        Network case1 = new Network(3, new int[][]{{1, 0, 0}, {1, 1, 0}, {1, 1, 1}});
+        case1.testSolution();
     }
 
     public static void test_ConnectIslnads() {
@@ -25,11 +55,11 @@ public class test {
         answerList.add(4);
 
         nList.add(5);
-        costList.add(new int[][]{{0,1,1},{3,4,1},{1,2,2},{2,3,4}});
+        costList.add(new int[][]{{0, 1, 1}, {3, 4, 1}, {1, 2, 2}, {2, 3, 4}});
         answerList.add(0);
 
         nList.add(5);
-        costList.add(new int[][]{{0,1,1},{0,4,5},{2,4,1},{2,3,1},{3,4,1}});
+        costList.add(new int[][]{{0, 1, 1}, {0, 4, 5}, {2, 4, 1}, {2, 3, 1}, {3, 4, 1}});
         answerList.add(0);
 
         nList.add(5);
@@ -37,11 +67,11 @@ public class test {
         answerList.add(104);
 
         nList.add(4);
-        costList.add(new int[][] {{0,1,1},{0,2,2},{2,3,1}});
+        costList.add(new int[][]{{0, 1, 1}, {0, 2, 2}, {2, 3, 1}});
         answerList.add(4);
 
         nList.add(6);
-        costList.add(new int[][] {{0, 1, 5}, {0, 3, 2}, {0, 4, 3}, {1, 4, 1}, {3, 4, 10}, {1, 2, 2}, {2, 5, 3}, {4, 5, 4}} );
+        costList.add(new int[][]{{0, 1, 5}, {0, 3, 2}, {0, 4, 3}, {1, 4, 1}, {3, 4, 10}, {1, 2, 2}, {2, 5, 3}, {4, 5, 4}});
         answerList.add(11);
 
         ConnectIslands m = new ConnectIslands();
