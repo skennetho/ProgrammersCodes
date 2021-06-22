@@ -7,16 +7,30 @@ import Greedy.MakingBigNumber;
 import Greedy.SpeedTrap;
 import Heap.DiscController;
 import Heap.DoublePriorityQueue;
+import KakaoInternship2020.Keypad;
 import Sort.H_index;
 import StackAndQueue.Printer;
 import StackAndQueue.TruckCrossingBridge;
 
+import java.security.Key;
 import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        test_TransformWords();
+        test_keypad();
     }
+    public static void test_keypad(){
+        Keypad case1 = new Keypad(new int[]{1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5}, "right" , "LRLLLRLLRRL");
+        case1.test();
+
+        Keypad case2 = new Keypad(new int[]{7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2},"left","LRLLRRLLLRR");
+        case2.test();
+
+        Keypad case3 = new Keypad(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0},"right","LLRLLRLLRL");
+        case3.test();
+
+    }
+
 
     public static void test_TransformWords(){
         TransformWords case1 = new TransformWords("aaa", "bbb", new String[]{"aac", "aab", "abc", "bbc", "bbb"},4);
