@@ -1,5 +1,6 @@
 import BruteForce.Carpet;
 import DFSandBFS.Network;
+import DFSandBFS.TransformWords;
 import Greedy.ConnectIslands;
 import Greedy.Joystick;
 import Greedy.MakingBigNumber;
@@ -14,7 +15,24 @@ import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        test_SpeedTrap();
+        test_TransformWords();
+    }
+
+    public static void test_TransformWords(){
+        TransformWords case1 = new TransformWords("aaa", "bbb", new String[]{"aac", "aab", "abc", "bbc", "bbb"},4);
+        case1.test();
+
+        TransformWords case2 = new TransformWords("aaa", "bbb", new String[]{}, 0);
+        case2.test();
+
+        case2 = new TransformWords("aaa", "bbb", new String[]{"abc","bba","das"}, 0);
+        case2.test();
+
+        TransformWords case3 = new TransformWords("hit","cog",new String[]{"hot", "dot", "dog", "lot", "log", "cog"}, 4);
+        case3.test();
+
+        TransformWords case4 = new TransformWords("hit","cog",new String[]{"hot", "dot", "dog", "lot", "log"}, 0);
+        case4.test();
     }
 
     public static void test_SpeedTrap() {
