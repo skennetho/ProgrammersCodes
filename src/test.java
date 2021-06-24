@@ -19,6 +19,7 @@ public class test {
     public static void main(String[] args) {
         test_keypad();
     }
+
     public static void test_keypad(){
         Keypad case1 = new Keypad(new int[]{1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5}, "right" , "LRLLLRLLRRL");
         case1.test();
@@ -28,9 +29,7 @@ public class test {
 
         Keypad case3 = new Keypad(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0},"right","LLRLLRLLRL");
         case3.test();
-
     }
-
 
     public static void test_TransformWords(){
         TransformWords case1 = new TransformWords("aaa", "bbb", new String[]{"aac", "aab", "abc", "bbc", "bbb"},4);
