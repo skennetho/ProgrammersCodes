@@ -1,23 +1,52 @@
-import BruteForce.Carpet;
-import DFSandBFS.Network;
-import DFSandBFS.TransformWords;
-import Greedy.ConnectIslands;
-import Greedy.Joystick;
-import Greedy.MakingBigNumber;
-import Greedy.SpeedTrap;
-import Heap.DiscController;
-import Heap.DoublePriorityQueue;
-import KakaoInternship2020.Keypad;
-import Sort.H_index;
-import StackAndQueue.Printer;
-import StackAndQueue.TruckCrossingBridge;
+import BruteForce.*;
+import DFSandBFS.*;
+import Greedy.*;
+import Heap.*;
+import Sort.*;
+import StackAndQueue.*;
+import KakaoInternship2020.*;
 
 import java.security.Key;
 import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        test_keypad();
+        test_TravelRoute();
+    }
+
+    public static void test_TravelRoute(){
+        ArrayList<String[][]> testCases = new ArrayList<>();
+        ArrayList<String[]> answerCases = new ArrayList<>();
+        String[][] case1 = {{"ICN", "JFK"}, {"HND", "IAD"}, {"JFK", "HND"}};
+        String[] answer1 = { "ICN", "JFK", "HND", "IAD"};
+        String[][] case2 = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO" }};
+        String[] answer2 = { "ICN", "ATL", "ICN", "SFO", "ATL", "SFO"};
+
+        testCases.add(case1);
+        testCases.add(case2);
+        answerCases.add(answer1);
+        answerCases.add(answer2);
+
+        for(int i =0 ; i< testCases.size(); i++){
+            String[] answer = new TravelRoute().solution(testCases.get(i));
+            boolean correct = true;
+            for(int j = 0 ; j < answerCases.size(); j++){
+                if(answer[j].equals(answerCases.get(i)[j])) {
+                    continue;
+                }else{
+                    correct = false;
+                    break;
+                }
+            }
+            if( correct){
+                System.out.println("testcase number "+i+" => passed!" );
+            }else{
+                System.out.println("testcase number "+i+" => failed..." );
+                System.out.println("answer  : " + Arrays.toString(answer));
+                System.out.println("correct : " + Arrays.toString(answerCases.get(i)));
+            }
+        }
+
     }
 
     public static void test_keypad(){
