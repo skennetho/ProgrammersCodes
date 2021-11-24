@@ -27,24 +27,22 @@ public class TravelRoute {
         visited = new boolean[tickets.length];
         String[] answer = new String[tickets.length];
 
-        DFS(0, "ICN", 0, tickets, "");
+        DFS(0, "ICN", tickets, "");
 
         Collections.sort(paths);
-
         answer = paths.get(0).split(" ");
-
         return answer;
     }
-    public void DFS( int count, String current, int curr_index , String[][] tickets, String path){
+    public void DFS( int count, String current , String[][] tickets, String path){
         if(count == tickets.length){
-            paths.add(path+tickets[curr_index][TO]);
+            paths.add(path+current);
             return;
         }
         for(int i =0 ; i < visited.length; i++){
             if(visited[i]) continue;
             if(tickets[i][FROM].equals(current)){
                 visited[i] = true;
-                DFS(count+1,tickets[i][TO],i,  tickets, path+current+" ");
+                DFS(count+1,tickets[i][TO], tickets, path+current+" ");
                 visited[i] = false;
             }
         }

@@ -5,43 +5,65 @@ import Heap.*;
 import Sort.*;
 import StackAndQueue.*;
 import KakaoInternship2020.*;
-
-import java.security.Key;
+import other.*;
 import java.util.*;
+import other.Lotto.TestCase;
+
 
 public class test {
+
     public static void main(String[] args) {
-        test_TravelRoute();
+        test_Lotto();
     }
 
-    public static void test_TravelRoute(){
+    public static void test_Lotto() {
+        ArrayList<Lotto.TestCase> cases = new ArrayList<>();
+        cases.add(new TestCase(new int[]{44, 1, 0, 0, 31, 25},
+            new int[]{31, 10, 45, 1, 6, 19}, new int[]{3, 5}));
+        cases.add(new TestCase(new int[]{0, 0, 0, 0, 0, 0},
+            new int[]{38, 19, 20, 40, 15, 25}, new int[]{1, 6}));
+        cases.add(new TestCase(new int[]{45, 4, 35, 20, 3, 9},
+            new int[]{20, 9, 3, 45, 4, 35}, new int[]{1, 1}));
+        cases.add(new TestCase(new int[]{1,2,3,4,5,6},
+            new int[]{7,8,9,10,11,12}, new int[]{6, 6}));
+
+        for (TestCase tc : cases) {
+            int[] result = new Lotto().solution(tc.lottos, tc.win_nums);
+            System.out.println("result: " + result[0] + ", " + result[1] +
+                "correct ans: " + tc.answer[0] + "," + tc.answer[1]);
+        }
+    }
+
+
+    public static void test_TravelRoute() {
         ArrayList<String[][]> testCases = new ArrayList<>();
         ArrayList<String[]> answerCases = new ArrayList<>();
         String[][] case1 = {{"ICN", "JFK"}, {"HND", "IAD"}, {"JFK", "HND"}};
-        String[] answer1 = { "ICN", "JFK", "HND", "IAD"};
-        String[][] case2 = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO" }};
-        String[] answer2 = { "ICN", "ATL", "ICN", "SFO", "ATL", "SFO"};
+        String[] answer1 = {"ICN", "JFK", "HND", "IAD"};
+        String[][] case2 = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"},
+            {"ATL", "SFO"}};
+        String[] answer2 = {"ICN", "ATL", "ICN", "SFO", "ATL", "SFO"};
 
         testCases.add(case1);
         testCases.add(case2);
         answerCases.add(answer1);
         answerCases.add(answer2);
 
-        for(int i =0 ; i< testCases.size(); i++){
+        for (int i = 0; i < testCases.size(); i++) {
             String[] answer = new TravelRoute().solution(testCases.get(i));
             boolean correct = true;
-            for(int j = 0 ; j < answerCases.size(); j++){
-                if(answer[j].equals(answerCases.get(i)[j])) {
+            for (int j = 0; j < answerCases.size(); j++) {
+                if (answer[j].equals(answerCases.get(i)[j])) {
                     continue;
-                }else{
+                } else {
                     correct = false;
                     break;
                 }
             }
-            if( correct){
-                System.out.println("testcase number "+i+" => passed!" );
-            }else{
-                System.out.println("testcase number "+i+" => failed..." );
+            if (correct) {
+                System.out.println("testcase number " + i + " => passed!");
+            } else {
+                System.out.println("testcase number " + i + " => failed...");
                 System.out.println("answer  : " + Arrays.toString(answer));
                 System.out.println("correct : " + Arrays.toString(answerCases.get(i)));
             }
@@ -49,37 +71,43 @@ public class test {
 
     }
 
-    public static void test_keypad(){
-        Keypad case1 = new Keypad(new int[]{1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5}, "right" , "LRLLLRLLRRL");
+    public static void test_keypad() {
+        Keypad case1 = new Keypad(new int[]{1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5}, "right",
+            "LRLLLRLLRRL");
         case1.test();
 
-        Keypad case2 = new Keypad(new int[]{7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2},"left","LRLLRRLLLRR");
+        Keypad case2 = new Keypad(new int[]{7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2}, "left",
+            "LRLLRRLLLRR");
         case2.test();
 
-        Keypad case3 = new Keypad(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0},"right","LLRLLRLLRL");
+        Keypad case3 = new Keypad(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, "right", "LLRLLRLLRL");
         case3.test();
     }
 
-    public static void test_TransformWords(){
-        TransformWords case1 = new TransformWords("aaa", "bbb", new String[]{"aac", "aab", "abc", "bbc", "bbb"},4);
+    public static void test_TransformWords() {
+        TransformWords case1 = new TransformWords("aaa", "bbb",
+            new String[]{"aac", "aab", "abc", "bbc", "bbb"}, 4);
         case1.test();
 
         TransformWords case2 = new TransformWords("aaa", "bbb", new String[]{}, 0);
         case2.test();
 
-        case2 = new TransformWords("aaa", "bbb", new String[]{"abc","bba","das"}, 0);
+        case2 = new TransformWords("aaa", "bbb", new String[]{"abc", "bba", "das"}, 0);
         case2.test();
 
-        TransformWords case3 = new TransformWords("hit","cog",new String[]{"hot", "dot", "dog", "lot", "log", "cog"}, 4);
+        TransformWords case3 = new TransformWords("hit", "cog",
+            new String[]{"hot", "dot", "dog", "lot", "log", "cog"}, 4);
         case3.test();
 
-        TransformWords case4 = new TransformWords("hit","cog",new String[]{"hot", "dot", "dog", "lot", "log"}, 0);
+        TransformWords case4 = new TransformWords("hit", "cog",
+            new String[]{"hot", "dot", "dog", "lot", "log"}, 0);
         case4.test();
     }
 
     public static void test_SpeedTrap() {
 
-        SpeedTrap speedTrap = new SpeedTrap(new int[][]{{-20, 15}, {-20, -10}, {-20, -17}, {-20, 3}}, 1);
+        SpeedTrap speedTrap = new SpeedTrap(
+            new int[][]{{-20, 15}, {-20, -10}, {-20, -17}, {-20, 3}}, 1);
         speedTrap.test();
 
         SpeedTrap case2 = new SpeedTrap(new int[][]{{-20, 15}, {-14, -5}, {-18, -13}, {-5, -3}}, 2);
@@ -91,10 +119,13 @@ public class test {
         SpeedTrap case4 = new SpeedTrap(new int[][]{{0, 1}, {0, 1}, {2, 2}}, 2);
         case4.test();
 
-        speedTrap = new SpeedTrap(new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {7, 8}, {8, 9}, {9, 10}, {10, 11}, {11, 12}, {12, 13}, {13, 14}, {14, 15}}, 8);
+        speedTrap = new SpeedTrap(
+            new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {7, 8}, {8, 9},
+                {9, 10}, {10, 11}, {11, 12}, {12, 13}, {13, 14}, {14, 15}}, 8);
         speedTrap.test();
 
-        speedTrap = new SpeedTrap(new int[][]{{-191, -107}, {-184, -151}, {-150, -102}, {-171, -124}, {-120, -114}}, 2);
+        speedTrap = new SpeedTrap(
+            new int[][]{{-191, -107}, {-184, -151}, {-150, -102}, {-171, -124}, {-120, -114}}, 2);
         speedTrap.test();
 
 
@@ -131,12 +162,14 @@ public class test {
         answerList.add(4);
 
         nList.add(6);
-        costList.add(new int[][]{{0, 1, 5}, {0, 3, 2}, {0, 4, 3}, {1, 4, 1}, {3, 4, 10}, {1, 2, 2}, {2, 5, 3}, {4, 5, 4}});
+        costList.add(new int[][]{{0, 1, 5}, {0, 3, 2}, {0, 4, 3}, {1, 4, 1}, {3, 4, 10}, {1, 2, 2},
+            {2, 5, 3}, {4, 5, 4}});
         answerList.add(11);
 
         ConnectIslands m = new ConnectIslands();
         for (int i = 0; i < nList.size(); i++) {
-            System.out.println("SOLUTION -- result >> " + m.solution(nList.get(i), costList.get(i)) + " ==? "
+            System.out.println(
+                "SOLUTION -- result >> " + m.solution(nList.get(i), costList.get(i)) + " ==? "
                     + answerList.get(i));
             System.out.println("-------------------------------------");
 //            break;  // 제거
@@ -157,7 +190,8 @@ public class test {
 
         MakingBigNumber m = new MakingBigNumber();
         for (Map.Entry<String, Integer> casex : caseList.entrySet()) {
-            System.out.println("SOLUTION -- result >> " + m.solution2(casex.getKey(), casex.getValue()));
+            System.out
+                .println("SOLUTION -- result >> " + m.solution2(casex.getKey(), casex.getValue()));
             System.out.println("-------------------------------------");
         }
     }
@@ -189,7 +223,7 @@ public class test {
         Carpet c = new Carpet();
         for (int[] casex : caseList) {
             System.out.println(Arrays.toString(c.solution(casex[0], casex[1]))
-                    + " ... input:" + Arrays.toString(casex));
+                + " ... input:" + Arrays.toString(casex));
         }
 
     }
@@ -216,7 +250,8 @@ public class test {
 //        String[] operation = {"I 15", "D 1"};    //0,0
 //        String[] operation = {"I 7", "I 5","I -5","D -1"};    //7,5
 //        String[] operation = {"I 16", "I -5643", "D -1", "D 1", "D 1", "I 123", "D -1"};    //0,0
-        String[] operation = {"I 4", "I 3", "I 2", "I 1", "D 1", "D 1", "D -1", "D -1", "I 5", "I 6"};
+        String[] operation = {"I 4", "I 3", "I 2", "I 1", "D 1", "D 1", "D -1", "D -1", "I 5",
+            "I 6"};
 //        String[] operation = {"D -1", "D 1", "D -1" , "D 1"};
         System.out.println(new DoublePriorityQueue().solution(operation));
         System.out.println(new DoublePriorityQueue().solution2(operation));
